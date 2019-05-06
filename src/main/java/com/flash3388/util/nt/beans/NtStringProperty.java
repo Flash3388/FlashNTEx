@@ -2,14 +2,15 @@ package com.flash3388.util.nt.beans;
 
 import com.beans.Property;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableType;
+import edu.wpi.first.networktables.NetworkTableValue;
 
-public class NtStringProperty implements Property<String> {
+public class NtStringProperty extends NtPropertyBase implements Property<String> {
 
-    private final NetworkTableEntry mEntry;
     private final String mDefaultValue;
 
     public NtStringProperty(NetworkTableEntry entry, String defaultValue) {
-        mEntry = entry;
+        super(entry);
         mDefaultValue = defaultValue;
     }
 
@@ -19,11 +20,12 @@ public class NtStringProperty implements Property<String> {
 
     @Override
     public String get() {
-        return mEntry.getString(mDefaultValue);
+        NetworkTableValue value = getOfType(NetworkTableType.kString);
+        return value.getString();
     }
 
     @Override
     public void set(String value) {
-        mEntry.setString(value);
+        set(NetworkTableValue.makeString(value));
     }
 }

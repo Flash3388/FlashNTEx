@@ -2,14 +2,15 @@ package com.flash3388.util.nt.beans;
 
 import com.beans.DoubleProperty;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableType;
+import edu.wpi.first.networktables.NetworkTableValue;
 
-public class NtDoubleProperty implements DoubleProperty {
+public class NtDoubleProperty extends NtPropertyBase implements DoubleProperty {
 
-    private final NetworkTableEntry mEntry;
     private final double mDefaultValue;
 
     public NtDoubleProperty(NetworkTableEntry entry, double defaultValue) {
-        mEntry = entry;
+        super(entry);
         mDefaultValue = defaultValue;
     }
 
@@ -19,12 +20,13 @@ public class NtDoubleProperty implements DoubleProperty {
 
     @Override
     public double getAsDouble() {
-        return mEntry.getDouble(mDefaultValue);
+        NetworkTableValue value = getOfType(NetworkTableType.kDouble);
+        return value.getDouble();
     }
 
     @Override
     public void setAsDouble(double value) {
-        mEntry.setDouble(value);
+        set(NetworkTableValue.makeDouble(value));
     }
 
     @Override

@@ -2,14 +2,15 @@ package com.flash3388.util.nt.beans;
 
 import com.beans.BooleanProperty;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableType;
+import edu.wpi.first.networktables.NetworkTableValue;
 
-public class NtBooleanProperty implements BooleanProperty {
+public class NtBooleanProperty extends NtPropertyBase implements BooleanProperty {
 
-    private final NetworkTableEntry mEntry;
     private final boolean mDefaultValue;
 
     public NtBooleanProperty(NetworkTableEntry entry, boolean defaultValue) {
-        mEntry = entry;
+        super(entry);
         mDefaultValue = defaultValue;
     }
 
@@ -19,12 +20,13 @@ public class NtBooleanProperty implements BooleanProperty {
 
     @Override
     public boolean getAsBoolean() {
-        return mEntry.getBoolean(mDefaultValue);
+        NetworkTableValue value = getOfType(NetworkTableType.kBoolean);
+        return value.getBoolean();
     }
 
     @Override
     public void setAsBoolean(boolean value) {
-        mEntry.setBoolean(value);
+        set(NetworkTableValue.makeBoolean(value));
     }
 
     @Override

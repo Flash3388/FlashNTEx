@@ -2,14 +2,15 @@ package com.flash3388.util.nt.beans;
 
 import com.beans.IntProperty;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableType;
+import edu.wpi.first.networktables.NetworkTableValue;
 
-public class NtIntProperty implements IntProperty {
+public class NtIntProperty extends NtPropertyBase implements IntProperty {
 
-    private final NetworkTableEntry mEntry;
     private final int mDefaultValue;
 
     public NtIntProperty(NetworkTableEntry entry, int defaultValue) {
-        mEntry = entry;
+        super(entry);
         mDefaultValue = defaultValue;
     }
 
@@ -19,12 +20,13 @@ public class NtIntProperty implements IntProperty {
 
     @Override
     public int getAsInt() {
-        return (int) mEntry.getDouble(mDefaultValue);
+        NetworkTableValue value = getOfType(NetworkTableType.kDouble);
+        return (int) value.getDouble();
     }
 
     @Override
     public void setAsInt(int value) {
-        mEntry.setDouble(value);
+        set(NetworkTableValue.makeDouble(value));
     }
 
     @Override
