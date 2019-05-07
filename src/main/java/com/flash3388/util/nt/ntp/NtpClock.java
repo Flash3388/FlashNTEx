@@ -6,20 +6,20 @@ import com.flash3388.flashlib.time.Time;
 public class NtpClock implements Clock {
 
     private final Clock mBaseClock;
-    private long mOffset;
+    private long mOffsetMillis;
 
     public NtpClock(Clock baseClock) {
         mBaseClock = baseClock;
-        mOffset = 0;
+        mOffsetMillis = 0;
     }
 
     @Override
     public Time currentTime() {
         long currentTimeMillis = mBaseClock.currentTime().getAsMillis();
-        return Time.milliseconds(currentTimeMillis + mOffset);
+        return Time.milliseconds(currentTimeMillis + mOffsetMillis);
     }
 
-    void updateOffset(long offset) {
-        mOffset += offset;
+    void updateOffset(long offsetMillis) {
+        mOffsetMillis += offsetMillis;
     }
 }
