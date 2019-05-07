@@ -7,15 +7,8 @@ import edu.wpi.first.networktables.NetworkTableValue;
 
 public class NtStringProperty extends NtPropertyBase implements Property<String> {
 
-    private final String mDefaultValue;
-
-    public NtStringProperty(NetworkTableEntry entry, String defaultValue) {
-        super(entry);
-        mDefaultValue = defaultValue;
-    }
-
     public NtStringProperty(NetworkTableEntry entry) {
-        this(entry, null);
+        super(entry);
     }
 
     @Override

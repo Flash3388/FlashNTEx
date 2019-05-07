@@ -5,17 +5,12 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.networktables.NetworkTableValue;
 
+import java.util.Objects;
+
 public class NtIntProperty extends NtPropertyBase implements IntProperty {
 
-    private final int mDefaultValue;
-
-    public NtIntProperty(NetworkTableEntry entry, int defaultValue) {
-        super(entry);
-        mDefaultValue = defaultValue;
-    }
-
     public NtIntProperty(NetworkTableEntry entry) {
-        this(entry, 0);
+        super(entry);
     }
 
     @Override
@@ -36,6 +31,7 @@ public class NtIntProperty extends NtPropertyBase implements IntProperty {
 
     @Override
     public void set(Integer value) {
-        setAsInt(value == null ? mDefaultValue : value);
+        Objects.requireNonNull(value, "property value cannot be null");
+        setAsInt(value);
     }
 }

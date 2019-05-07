@@ -5,17 +5,12 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.networktables.NetworkTableValue;
 
+import java.util.Objects;
+
 public class NtBooleanProperty extends NtPropertyBase implements BooleanProperty {
 
-    private final boolean mDefaultValue;
-
-    public NtBooleanProperty(NetworkTableEntry entry, boolean defaultValue) {
-        super(entry);
-        mDefaultValue = defaultValue;
-    }
-
     public NtBooleanProperty(NetworkTableEntry entry) {
-        this(entry, false);
+        super(entry);
     }
 
     @Override
@@ -36,6 +31,7 @@ public class NtBooleanProperty extends NtPropertyBase implements BooleanProperty
 
     @Override
     public void set(Boolean value) {
-        set(value == null ? mDefaultValue : value);
+        Objects.requireNonNull(value, "property value cannot be null");
+        setAsBoolean(value);
     }
 }
