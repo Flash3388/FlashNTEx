@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     compile group: 'com.flash3388.util', name: 'javabeans', version: '1.0'
+    compile group: 'com.flash3388.flashlib', name: 'flashlib', version: '2.0.0-alpha.4'
 
     compile group: 'edu.wpi.first.ntcore', name: 'ntcore-java', version: '2019.4.1'
 
