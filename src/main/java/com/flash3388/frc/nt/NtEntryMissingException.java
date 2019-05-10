@@ -1,4 +1,4 @@
-package com.flash3388.util.nt;
+package com.flash3388.frc.nt;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 

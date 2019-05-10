@@ -1,7 +1,7 @@
-package com.flash3388.util.nt.beans;
+package com.flash3388.frc.nt.beans;
 
-import com.flash3388.util.nt.NtEntryIncorrectTypeException;
-import com.flash3388.util.nt.NtEntryMissingException;
+import com.flash3388.frc.nt.NtEntryIncorrectTypeException;
+import com.flash3388.frc.nt.NtEntryMissingException;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.networktables.NetworkTableValue;

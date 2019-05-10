@@ -1,37 +1,37 @@
-package com.flash3388.util.nt.beans;
+package com.flash3388.frc.nt.beans;
 
-import com.beans.DoubleProperty;
+import com.beans.IntProperty;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.networktables.NetworkTableValue;
 
 import java.util.Objects;
 
-public class NtDoubleProperty extends NtPropertyBase implements DoubleProperty {
+public class NtIntProperty extends NtPropertyBase implements IntProperty {
 
-    public NtDoubleProperty(NetworkTableEntry entry) {
+    public NtIntProperty(NetworkTableEntry entry) {
         super(entry);
     }
 
     @Override
-    public double getAsDouble() {
+    public int getAsInt() {
         NetworkTableValue value = getOfType(NetworkTableType.kDouble);
-        return value.getDouble();
+        return (int) value.getDouble();
     }
 
     @Override
-    public void setAsDouble(double value) {
+    public void setAsInt(int value) {
         set(NetworkTableValue.makeDouble(value));
     }
 
     @Override
-    public Double get() {
-        return getAsDouble();
+    public Integer get() {
+        return getAsInt();
     }
 
     @Override
-    public void set(Double value) {
+    public void set(Integer value) {
         Objects.requireNonNull(value, "property value cannot be null");
-        setAsDouble(value);
+        setAsInt(value);
     }
 }

@@ -1,4 +1,4 @@
-package com.flash3388.util.nt.beans;
+package com.flash3388.frc.nt.beans;
 
 import com.beans.Property;
 import edu.wpi.first.networktables.NetworkTableEntry;

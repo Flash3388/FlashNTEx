@@ -1,4 +1,4 @@
-package com.flash3388.util.nt.ntp;
+package com.flash3388.frc.nt.ntp;
 
 import com.flash3388.flashlib.time.Clock;
 import com.flash3388.flashlib.time.Time;
