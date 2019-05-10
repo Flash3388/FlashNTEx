@@ -2,7 +2,6 @@ package com.flash3388.util.nt.ntp;
 
 import com.flash3388.flashlib.time.Time;
 import com.flash3388.flashlib.util.flow.ParameterizedRunner;
-import com.flash3388.flashlib.util.flow.Runner;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
@@ -12,6 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class NtNtpClient implements ParameterizedRunner<Time> {
 
     private static final int NOT_RUNNING_HANDLE = -1;
+    private static final long MINIMAL_REQUEST_PERIOD_MILLIS = 10;
 
     private final NetworkTableEntry mRequestEntry;
 
@@ -40,6 +40,9 @@ public class NtNtpClient implements ParameterizedRunner<Time> {
     public void start(Time requestPeriod) {
         if (isRunning()) {
             throw new IllegalStateException("Already Running");
+        }
+        if (!requestPeriod.isValid() || requestPeriod.getAsMillis() < MINIMAL_REQUEST_PERIOD_MILLIS) {
+            throw new IllegalArgumentException("Invalid request period: " + requestPeriod);
         }
 
         int handle = mRequestEntry.addListener(mSyncer::onResponseReceived, EntryListenerFlags.kUpdate);
